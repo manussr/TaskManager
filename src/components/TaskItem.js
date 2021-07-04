@@ -9,6 +9,8 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import LabelIcon from '@material-ui/icons/Label';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import CommentIcon from '@material-ui/icons/Comment';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -41,6 +43,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
       },
+      row:{
+        marginBlockEnd: theme.spacing(3),
+        '& > *':{
+          display: 'flex'
+        }
+      }
 }));
 
 const TaskItem = (props) => {
@@ -80,16 +88,22 @@ const TaskItem = (props) => {
     const Forms = () => {
         return (
           <React.Fragment>
-            <Grid item xs={12} sm={12} md={12}>
+            <Grid item xs={12} sm={12} md={12} className={classes.row}>
               <div>
+                <FormatAlignLeftIcon></FormatAlignLeftIcon>
                 <Typography variant="subtitle1">Descripcion</Typography>
+              </div>
+              <div>
                 <TextField label="Descripcion" fullWidth></TextField>
               </div>
             </Grid>
-            <Grid item xs={12} sm={12} md={12}>
+            <Grid item xs={12} sm={12} md={12} className={classes.row}>
               <div>
+                <CommentIcon/>
                 <Typography variant="subtitle1">Actividad</Typography>
-                <Avatar>ES</Avatar>
+              </div>
+              <div>
+                <Avatar sizes="small">ES</Avatar>
                 <TextField label="Actividad" fullWidth></TextField>
               </div>
             </Grid>

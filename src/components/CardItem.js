@@ -1,14 +1,13 @@
+import React from "react";
 import { CardContent, Card, CardActions, 
-        IconButton, CardHeader, Typography, Button} from "@material-ui/core";
-
+        IconButton, CardHeader, CardActionArea, Modal} from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import CommentIcon from '@material-ui/icons/Comment';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
-import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-
+import TaskItem from "./TaskItem";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,16 +29,36 @@ const useStyles = makeStyles((theme) => ({
 
 const CardItem = (props) => {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
     return (
         <Card className={classes.root} variant="outlined">
-            <CardHeader title={props.title} action={
+            <CardHeader  title={props.title} action={
                     <IconButton size="small" aria-label="edit">
                         <EditIcon></EditIcon>
                     </IconButton>
             }></CardHeader>
-          <CardContent>
+          <CardActionArea onClick={handleOpen}>
+            <CardContent>
             
-          </CardContent>
+            </CardContent>
+          </CardActionArea>
+          <Modal 
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description" 
+          >
+            <TaskItem />
+          </Modal>
           <CardActions>
             <IconButton size="small" aria-label="description">
                 <FormatAlignLeftIcon/>

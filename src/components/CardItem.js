@@ -1,6 +1,6 @@
 import React from "react";
 import { CardContent, Card, CardActions, 
-        IconButton, CardHeader, CardActionArea, Modal} from "@material-ui/core";
+        IconButton, CardHeader, CardActionArea, Modal, DialogContent, Dialog } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
@@ -39,10 +39,14 @@ const CardItem = (props) => {
       setOpen(false);
     };
 
+    const handleEdit = (event) => {
+      console.log("Edit event");
+    }
+
     return (
         <Card className={classes.root} variant="outlined">
             <CardHeader  title={props.title} action={
-                    <IconButton size="small" aria-label="edit">
+                    <IconButton size="small" aria-label="edit" onClick={handleEdit}>
                         <EditIcon></EditIcon>
                     </IconButton>
             }></CardHeader>
@@ -57,7 +61,9 @@ const CardItem = (props) => {
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description" 
           >
-            <TaskInfo/>
+            <DialogContent>
+              <TaskInfo/>
+            </DialogContent>
           </Modal>
           <CardActions>
             <IconButton size="small" aria-label="description">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListSubheader, ListItemSecondaryAction, IconButton } from '@material-ui/core';
+import { List, ListItem, ListSubheader, ListItemSecondaryAction, IconButton, Typography } from '@material-ui/core';
 import {Menu, MenuItem} from "@material-ui/core";
 import CardItem from './CardItem';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     },
     listItem: {
         width: '200px'
+    },
+    title:{
+        fontWeight: "bold"
     }
   }));
 
@@ -66,11 +69,10 @@ const TaskList = (props) => {
     return(
         <List className={classes.list} subheader={
             <ListSubheader component="div" id="list-subheader">
-                {props.title}
+                <Typography className={classes.title} variant="h6" align="left">{props.title}</Typography>
                 <ListItemSecondaryAction>
                     <IconButton onClick={handleClickMenu}>
                         <MoreHorizIcon></MoreHorizIcon>
-                        
                     </IconButton>
                     <Menu
                         id="simple-menu"

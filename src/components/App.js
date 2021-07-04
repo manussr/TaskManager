@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper';
 import Header from './Header';
 import TaskList from './TaskList';
+import TaskItem from "./TaskItem";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,8 +26,16 @@ const App = () => {
     const classes = useStyles();
     return (
         <div>
-            <Header/>
-            <Grid container spacing={1}>
+          <Header/>
+          <TaskItem/>
+        </div>
+    );
+};
+
+export default App;
+
+/*
+<Grid container spacing={1}>
                 <Grid item lg={4} md={4} xs={12} className={classes.paper}>
                   <TaskList title={"To Do"}></TaskList>
                 </Grid>
@@ -37,8 +46,4 @@ const App = () => {
                   <TaskList title={"Done"}></TaskList>
                 </Grid>
             </Grid>
-        </div>
-    );
-};
-
-export default App;
+*/

@@ -7,7 +7,7 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 import CommentIcon from '@material-ui/icons/Comment';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import { makeStyles } from '@material-ui/core/styles';
-import TaskItem from "./TaskItem";
+import TaskInfo from "./TaskInfo";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,7 +57,7 @@ const CardItem = (props) => {
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description" 
           >
-            <TaskItem />
+            <TaskInfo/>
           </Modal>
           <CardActions>
             <IconButton size="small" aria-label="description">

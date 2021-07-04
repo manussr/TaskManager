@@ -46,8 +46,20 @@ const useStyles = makeStyles((theme) => ({
       row:{
         marginBlockEnd: theme.spacing(3),
         '& > *':{
-          display: 'flex'
+          display: 'flex',
+          alignSelf: "center",
+          marginBottom: theme.spacing(2)
         }
+      }, 
+      avatar: {
+        width: theme.spacing(4),
+        height: theme.spacing(4),
+        fontSize: theme.spacing(2)
+      },
+      comment: {
+        display: "flex",
+        alignSelf: "center",
+        justifyContent: "center"
       }
 }));
 
@@ -102,9 +114,9 @@ const TaskItem = (props) => {
                 <CommentIcon/>
                 <Typography variant="subtitle1">Actividad</Typography>
               </div>
-              <div>
-                <Avatar sizes="small">ES</Avatar>
-                <TextField label="Actividad" fullWidth></TextField>
+              <div className={classes.comment}>
+                <Avatar className={classes.avatar}>ES</Avatar>
+                <TextField fullWidth></TextField>
               </div>
             </Grid>
           </React.Fragment>

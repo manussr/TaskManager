@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListSubheader, ListItemSecondaryAction, IconButton } from '@material-ui/core';
+import {Menu, MenuItem} from "@material-ui/core";
 import CardItem from './CardItem';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
@@ -28,6 +29,16 @@ const TaskList = (props) => {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [error, setError] = React.useState(null);
     const [tasks, setTasks] = React.useState([]);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+
+    const handleClickMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    
+    const handleCloseMenu = () => {
+        setAnchorEl(null);
+    };
     React.useEffect(() => {
         setTasks([
             {
@@ -57,9 +68,21 @@ const TaskList = (props) => {
             <ListSubheader component="div" id="list-subheader">
                 {props.title}
                 <ListItemSecondaryAction>
-                    <IconButton>
+                    <IconButton onClick={handleClickMenu}>
                         <MoreHorizIcon></MoreHorizIcon>
+                        
                     </IconButton>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleCloseMenu} 
+                    >
+                        <MenuItem onClick={handleCloseMenu}>Añadir tarjeta</MenuItem>
+                        <MenuItem onClick={handleCloseMenu}>Ordenar</MenuItem>
+                        <MenuItem onClick={handleCloseMenu}>Copiar</MenuItem>
+                    </Menu>
                 </ListItemSecondaryAction>
             </ListSubheader>}>
             {tasks.map((task)=><ListItem key={task.id} className="listItem"><CardItem title={task.title}/></ListItem>)}

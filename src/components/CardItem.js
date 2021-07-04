@@ -43,6 +43,8 @@ const CardItem = (props) => {
       console.log("Edit event");
     }
 
+    
+
     return (
         <Card className={classes.root} variant="outlined">
             <CardHeader  title={props.title} action={

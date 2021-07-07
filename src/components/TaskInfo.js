@@ -12,7 +12,7 @@ import LabelIcon from '@material-ui/icons/Label';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import CommentIcon from '@material-ui/icons/Comment';
 import { makeStyles } from '@material-ui/core/styles';
-
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -70,8 +70,10 @@ const useStyles = makeStyles((theme) => ({
 const TaskInfo = React.forwardRef((props, ref)=>{
     {
         const classes = useStyles();
-        const [task, setTask] = React.useState(null);
-    
+        const [task, setTask] = React.useState([]);
+        const [isLoaded, setIsLoaded] = React.useState(false);
+        const [error, setError] = React.useState(null);
+        const id = props.task;
         const Actions = () =>{
             return (
               <React.Fragment>
@@ -111,7 +113,7 @@ const TaskInfo = React.forwardRef((props, ref)=>{
                     <Typography variant="subtitle1">Descripcion</Typography>
                   </div>
                   <div>
-                    <TextField label="Descripcion" fullWidth></TextField>
+                    <TextField label="Descripcion" fullWidth value={task.descripcion}></TextField>
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} className={classes.row}>
@@ -128,23 +130,49 @@ const TaskInfo = React.forwardRef((props, ref)=>{
             );
         };
     
-        return (
-            <Card className={classes.root} ref={ref}>
-                <CardHeader title={props.title}>
-    
-                </CardHeader>
-                <CardContent>
-                    <Grid container spacing={2}>
-                        <Grid item md={8} lg={8} xl={8} sm={12} xs={12}>
-                            <Forms></Forms>
-                        </Grid>
-                        <Grid item md={4} lg={4} xl={4} sm={12} xs={12}>
-                            <Actions></Actions>
-                        </Grid>
-                    </Grid>
-                </CardContent>
+        React.useEffect(() => {
+          axios.get(`https://proyecto-equipo7-bedu.herokuapp.com/v1/historias/${id}`)
+          .then(res=>{
+              console.log(res);
+              console.log(id);
+              const result = res.data;
+              setIsLoaded(true);
+              setTask(result);
+          })
+          .catch(error=>{
+              setIsLoaded(true);
+              setError(error);
+          })
+          }, [id])
+        
+        if(error){
+          return <p>Hubo un error al cargar los datos</p>
+        }else if(!isLoaded){
+          return (
+            <Card>
+              <CardContent className={classes.root}>
+                <p>Loading...</p>
+              </CardContent>
             </Card>
-        );
+          );
+        }else{
+          return (
+            <Card className={classes.root} ref={ref}>
+              <CardHeader title={task.nombre}>
+              </CardHeader>
+              <CardContent>
+                <Grid container spacing={2}>
+                  <Grid item md={8} lg={8} xl={8} sm={12} xs={12}>
+                    <Forms></Forms>
+                  </Grid>
+                  <Grid item md={4} lg={4} xl={4} sm={12} xs={12}>
+                    <Actions></Actions>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          );
+        }
     };
 })
 

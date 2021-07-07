@@ -29,13 +29,13 @@ const App = () => {
           <Header/>
           <Grid container spacing={1}>
             <Grid item lg={4} md={4} xs={12} className={classes.paper}>
-              <TaskList title={"To Do"}></TaskList>
+              <TaskList title={"En preparación"} estado={"En Preparacion"}></TaskList>
             </Grid>
             <Grid item lg={4} md={4} xs={12} className={classes.paper}>
-              <TaskList title={"Doing"}></TaskList>
+              <TaskList title={"En desarrollo"} estado={"En Desarrollo "}></TaskList>
             </Grid>
             <Grid item lg={4} md={4} xs={12} className={classes.paper}>
-              <TaskList title={"Done"}></TaskList>
+              <TaskList title={"Finalizado"} estado={"Finalizada"}></TaskList>
             </Grid>
           </Grid>
         </div>

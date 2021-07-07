@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const CardItem = (props) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-
+    const item = props.item;
     const handleOpen = () => {
       setOpen(true);
     };
@@ -47,14 +47,14 @@ const CardItem = (props) => {
 
     return (
         <Card className={classes.root} variant="outlined">
-            <CardHeader  title={props.title} action={
+            <CardHeader  title={item.nombre} action={
                     <IconButton size="small" aria-label="edit" onClick={handleEdit}>
                         <EditIcon></EditIcon>
                     </IconButton>
             }></CardHeader>
           <CardActionArea onClick={handleOpen}>
             <CardContent>
-            
+              <p>{item.descripcion}</p>
             </CardContent>
           </CardActionArea>
           <Modal 
@@ -64,7 +64,7 @@ const CardItem = (props) => {
             aria-describedby="simple-modal-description" 
           >
             <DialogContent>
-              <TaskInfo/>
+              <TaskInfo task={item.idHistoria}/>
             </DialogContent>
           </Modal>
           <CardActions>

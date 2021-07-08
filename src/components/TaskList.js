@@ -17,10 +17,12 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'grey'
     },
     list:{
-      backgroundColor: '#d3d3d3'
+      backgroundColor: '#d3d3d3',
+      overflow: 'auto',
+      maxHeight: '800px'
     },
     listItem: {
-        width: '200px'
+        maxWidth: '200px',
     },
     title:{
         fontWeight: "bold"

@@ -24,12 +24,19 @@ const useStyles = makeStyles((theme) => ({
       pos: {
         marginBottom: 12,
       },
+      content:{
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        maxWidth: "45ch"
+      }
 }));
 
 
 const CardItem = (props) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [edit, setEdit] = React.useState(false)
     const item = props.item;
     const handleOpen = () => {
       setOpen(true);
@@ -41,6 +48,7 @@ const CardItem = (props) => {
 
     const handleEdit = (event) => {
       console.log("Edit event");
+      setEdit(true);
     }
 
     
@@ -54,7 +62,7 @@ const CardItem = (props) => {
             }></CardHeader>
           <CardActionArea onClick={handleOpen}>
             <CardContent>
-              <p>{item.descripcion}</p>
+              <p className={classes.content}>{item.descripcion}</p>
             </CardContent>
           </CardActionArea>
           <Modal 
